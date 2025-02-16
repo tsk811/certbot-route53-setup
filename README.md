@@ -24,10 +24,13 @@ The automation script:
 This project uses Visual Studio Code's Dev Containers feature to provide a consistent development environment. The container is based on Red Hat's Universal Base Image (UBI 8) and includes all necessary dependencies.
 
 ### Dev Container Features
-- Red Hat UBI 8 base image
+- Red Hat UBI 8 base image (ARM64/aarch64 architecture)
 - Automatic AWS credentials mounting from host
 - Pre-configured environment variables
 - Automated setup script execution
+
+### Architecture Support
+The project is configured by default for ARM64 (aarch64) systems. For AMD64/x86_64 systems, the setup script will automatically detect and use the appropriate AWS CLI package.
 
 ## Getting Started
 
@@ -67,7 +70,7 @@ The `setup.sh` script, which runs automatically when the container starts:
 1. Updates system packages
 2. Installs Python 3.12 and dependencies
 3. Installs Certbot with Route53 plugin
-4. Installs AWS CLI
+4. Installs AWS CLI (automatically selects appropriate package for your architecture)
 5. Generates SSL certificate using Let's Encrypt
 6. Uploads the certificate to S3
 
@@ -82,11 +85,3 @@ The `setup.sh` script, which runs automatically when the container starts:
 - Certificates are valid for 90 days
 - AWS credentials are mounted read-only for security
 - The container environment ensures consistent behavior across different development machines
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Open the project in Dev Container
-4. Make your changes
-5. Submit a Pull Request
