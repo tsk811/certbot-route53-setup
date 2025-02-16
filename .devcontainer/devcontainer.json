@@ -1,0 +1,14 @@
+{
+    "name": "RHEL",
+    "image": "redhat/ubi8:latest",
+    "mounts": [
+        "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached,readonly"
+    ],
+    "containerEnv": {
+        "AWS_CONFIG_FILE": "/home/vscode/.aws/config",
+        "AWS_SHARED_CREDENTIALS_FILE": "/home/vscode/.aws/credentials",
+        "CERT_DOMAIN": "example.com",
+        "CERT_BUCKET": "bucket-name"
+    },
+    "postCreateCommand": "bash -i scripts/setup.sh"
+}
